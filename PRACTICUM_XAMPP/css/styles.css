@@ -1,0 +1,358 @@
+body {
+    font-family: "Optima", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    box-sizing: border-box; /* Para que el tamaño de los elementos se calcule incluyendo el padding y el border */
+    text-align: center; /* Centrar el contenido */
+}
+
+/* Estilos para centrar las imágenes */
+.image-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Estilo para la imagen del logo */
+.image-container img {
+    max-width: 300px; /* Ajusta el ancho máximo de la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+}
+
+
+/* Estilos para la barra de navegación */
+.navbar {
+    background-color: #FF8200; /* Color naranja Pantone 151 C */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.navbar a {
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Contenedor de la sección de imágenes en bloques */
+.content-blocks {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Ajustar el tamaño de los bloques para que sean iguales y ajustados al ancho */
+.left-image, .carousel {
+    flex: 1;
+    max-width: 48%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Organizar el contenido en columna dentro del bloque izquierdo */
+.left-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Estilos para la imagen en el bloque izquierdo */
+.left-image img {
+    width: 100%;
+    height: auto;
+    max-width: 400px; /* Imagen más grande */
+    cursor: pointer;
+}
+
+/* Estilos para el bloque de texto negro con letras blancas */
+.left-image a {
+    background-color: black;
+    color: white;
+    padding: 10px 10px;
+    margin-top: 5px;
+    font-size: 30px; /* Tamaño más grande */
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.left-image a:hover {
+    background-color: #333;
+}
+
+/* Ajustar el tamaño de las imágenes dentro de los bloques del carrusel */
+.carousel img {
+    width: 100%;
+    height: 470px;
+    object-fit: cover;
+}
+
+/* Ocultar las imágenes no activas en el carrusel */
+.carousel img {
+    display: none;
+}
+
+.carousel img.active {
+    display: block;
+}
+
+/* Botones de navegación del carrusel */
+.carousel-buttons {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.carousel-buttons button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+/* Nueva sección para imagen grande debajo del carrusel */
+.full-width-image-container {
+    width: 80%;
+    margin: 20px auto; /* Centrar la imagen */
+    display: flex;
+    justify-content: center;
+}
+
+.full-width-image-container img {
+    width: 100%; /* Ocupa el 100% del contenedor */
+    height: auto;
+    max-height: 450px; /* Ajustar la altura máxima para igualarla a las imágenes superiores */
+    object-fit: cover;
+}
+
+/* Estilo de la Tabla */
+.table-container {
+    margin: 20px auto; /* Centrar la tabla */
+    width: 90%; /* Ancho de la tabla */
+    max-width: 800px; /* Ancho máximo */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; /* Bordes redondeados */
+    overflow: hidden; /* Para que se apliquen los bordes redondeados */
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #FF8200; /* Color de fondo para encabezados */
+    color: white; /* Color del texto para encabezados */
+}
+
+tr:hover {
+    background-color: #f1f1f1; /* Color de fila en hover */
+}
+
+/* Estilo de Botones */
+.button-container {
+    margin-top: 20px;
+}
+
+.button {
+    display: inline-block;
+    background-color: #FF8200; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s;
+    font-size: 16px; /* Tamaño del texto */
+    text-decoration: none; /* Quitar subrayado */
+}
+
+.button:hover {
+    background-color: #e67300; /* Color del botón en hover */
+}
+
+/* Estilo del Footer */
+.footer-container {
+    background-color: #333; /* Color de fondo oscuro */
+    color: white; /* Texto en blanco */
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    border-top: 5px solid #FF8200; /* Línea superior con color naranja */
+    margin-top: 20px; /* Separación del contenido superior */
+}
+
+.footer-section {
+    flex: 1;
+    padding: 10px;
+    position: relative;
+}
+
+.footer-logo {
+    width: 300px;
+    height: auto;
+}
+
+/* Estilo para las secciones de contacto */
+.footer-section p {
+    margin: 5px 0;
+}
+
+/* Líneas verticales entre las secciones, con mayor altura */
+.footer-section:not(:first-child):before {
+    content: "";
+    height: 150px; /* Aumenta la altura de la línea vertical */
+    width: 1px;
+    background-color: white;
+    position: absolute;
+    left: 0;
+    top: 50%; /* Posiciona la línea vertical en el centro de la sección */
+    transform: translateY(-50%); /* Asegura que la línea esté centrada verticalmente */
+}
+
+.footer-section:not(:first-child) {
+    padding-left: 20px; /* Separación con la línea */
+}
+
+/* Estilos para la página Conócenos */
+.content-section {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: justify;
+}
+
+.content-section h1 {
+    text-align: center;
+    color: #FF8200;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.photo-text-block {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.photo-text-block img {
+    width: 40%;
+    height: auto;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+/* Estilos para el header */
+header {
+    display: flex;
+    justify-content: space-between; /* Alinea el logo y el botón en los extremos */
+    align-items: center; /* Centra verticalmente */
+    padding: 20px 10%; /* Añade un poco de espacio alrededor */
+}
+
+.header-buttons {
+    margin-left: auto; /* Empuja el botón hacia la derecha */
+}
+
+.live-button {
+    background-color: black;
+    color: white;
+    padding: 15px 30px;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 25px; /* Bordes redondeados */
+    display: inline-block;
+    margin-bottom: 20px; /* Separación con el iframe */
+    transition: background-color 0.3s ease; /* Transición para el hover */
+}
+
+.live-button:hover {
+    background-color: #333; /* Cambia el color al pasar el mouse */
+}
+/* Estilo general para los botones de los días */
+.day-buttons {
+    display: flex; /* Alinea los botones horizontalmente */
+    justify-content: center; /* Centra los botones en la barra */
+    margin: 20px 0; /* Espacio arriba y abajo */
+}
+
+.day-button {
+    background-color: #4CAF50; /* Color de fondo verde */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    margin: 0 10px; /* Espacio entre botones */
+    text-align: center; /* Centra el texto */
+    text-decoration: none; /* Quita el subrayado */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s; /* Efecto de transición */
+}
+
+/* Efecto hover para los botones */
+.day-button:hover {
+    background-color: #45a049; /* Color de fondo más oscuro al pasar el ratón */
+}
+
+/* Estilo para el botón activo */
+.day-button.active {
+    background-color: #333; /* Color de fondo oscuro para el botón activo */
+}
+.programs table {
+    width: 80%; /* Ajusta el ancho a un 80% del contenedor */
+    margin: 0 auto; /* Centra la tabla */
+    border-collapse: collapse;
+}
+
+.programs th, .programs td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.programs th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.programs tr:hover {
+    background-color: #f5f5f5;
+}
+
+.programs a {
+    text-decoration: none;
+    color: #333;
+}
+
+.programs a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="../images/favicon.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio Anáhuac Mockpage</title>
+    <!-- Enlaze el archivo CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+    <div class="image-container">
+        <img src="../images/anahuac_logo.png" alt="Logo Anáhuac">
+    </div>
+
+    <!-- Barra de navegación -->
+    <div class="navbar">
+        <a href="homepage.html">Inicio</a>
+        <a href="conocenos.html">Conócenos</a>
+        <a href="../php/programas.php">Programas</a>
+        <a href="../php/locutores.php">Locutores</a>
+        <a href="../php/parilla.php">Parrilla</a>
+    </div>
+
+    <div class="content-blocks">
+        <div class="left-image">
+            <a href="https://www.anahuac.mx/mexico/radio/play/index.html" target="_blank" class="live-button">¡Escúchanos en vivo!</a>
+            <iframe height="400px" width="100%" src="https://www.anahuac.mx/mexico/radio/play/index.html" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <div class="carousel" style="position: relative;">
+            <img src="../images/coming_soon.png" alt="Dia OV" class="active">
+            <img src="../images/redes.png" alt="Redes">
+
+            <!-- Botones de navegación del carrusel -->
+            <div class="carousel-buttons">
+                <button onclick="changeSlide(-1)">&#10094;</button>
+                <button onclick="changeSlide(1)">&#10095;</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="full-width-image-container">
+        <a href="https://www.anahuac.mx/mexico/radio/alternativa" target="_blank"> 
+            <img src="../images/alternativa.jpg" alt="alternativa">
+        </a>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel img');
+
+        function changeSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Función para mover automáticamente el carrusel
+        function autoSlide() {
+            changeSlide(1); // Mueve una imagen hacia adelante
+        }
+
+        // Cambia de imagen cada 3 segundos
+        setInterval(autoSlide, 3000);
+    </script>
+
+</body>
+<!-- Footer -->
+<footer class="footer-container">
+    <div class="footer-section">
+        <!-- Logo en el footer -->
+        <img src="../images/logo-RIU_0.png" alt="RIU" class="footer-logo">
+    </div>
+
+    <div class="footer-section">
+        <h5>CAMPUS NORTE</h5>
+            <p>Av. Universidad Anáhuac 46, Col. Lomas Anáhuac
+            Huixquilucan, Estado de México, C.P. 52786</p>
+            <p>Conmutador: +52 (55) 5627 0210</p>
+    </div>
+
+    <div class="footer-section">
+        <h5>CAMPUS SUR</h5>
+        <p>Av. de los Tanques no. 865, Col. Torres de Potrero, 
+            Ciudad de México, Alcaldía Álvaro Obregón, México,
+        </p>
+        <p>Conmutador: +52 (55) 5628 8800</p>
+    </div>
+</footer>
+
+</html>
