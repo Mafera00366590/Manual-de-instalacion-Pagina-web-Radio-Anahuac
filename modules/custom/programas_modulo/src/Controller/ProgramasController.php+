@@ -1,0 +1,104 @@
+<?php
+
+namespace Drupal\programas_modulo\Controller;
+
+use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Database\Database;
+
+/**
+ * Controlador para mostrar los datos de la tabla "programas".
+ */
+class ProgramasController extends ControllerBase {
+
+  /**
+   * Renderiza una tabla con los datos de los programas por día.
+   */
+  public function programasPage() {
+    try {
+      // Conexión a la base de datos.
+      $connection = Database::getConnection();
+
+      // Consulta para obtener todos los programas.
+      $query = $connection->select('programas', 'p');
+      $query->fields('p', ['id_programa', 'nombre', 'imagen']);
+      $query->join('horario', 'h', 'p.horario = h.id_horario');
+      $query->fields('h', ['dia']);
+      $query->condition('p.nombre', 'Musica', '!=');
+      $query->orderBy('h.dia');
+      
+      // Ejecutar la consulta.
+      $results = $query->execute();
+      $rows = $results->fetchAll();
+
+      // Agrupar programas por día.
+      $programas_por_dia = [
+        'Lunes' => [],
+        'Martes' => [],
+        'Miércoles' => [],
+        'Jueves' => [],
+        'Viernes' => [],
+      ];
+
+      // Organizar los programas por día.
+      foreach ($rows as $row) {
+        $programas_por_dia[$row->dia][] = $row;
+      }
+
+      // Construir la tabla.
+      $header = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
+      $table_rows = [];
+
+      // Obtener el número máximo de programas en un día.
+      $max_programas = max(array_map('count', $programas_por_dia)); 
+
+      // Rellenar las filas de la tabla.
+      for ($i = 0; $i < $max_programas; $i++) {
+        $table_row = [];
+        foreach ($programas_por_dia as $dia => $programas) {
+          if (isset($programas[$i])) {
+            $programa = $programas[$i];
+            $image_path = '/drupal/sites/default/files/fotos_programas/' . 
+htmlspecialchars($programa->imagen);
+
+            // Columna para la imagen.
+            $table_row[] = [
+              'data' => [
+                '#type' => 'html_tag',
+                '#tag' => 'img',
+                '#attributes' => [
+                  'src' => $image_path,
+                  'alt' => htmlspecialchars($programa->nombre),
+                  'style' => 'width:75px;height:50px;',
+                ],
+              ],
+            ];
+
+            // Columna para el nombre del programa.
+            $table_row[] = htmlspecialchars($programa->nombre);
+          } else {
+            // Si no hay programa para ese día, dejar vacío.
+            $table_row[] = '';
+            $table_row[] = '';
+          }
+        }
+        $table_rows[] = $table_row;
+      }
+
+      return [
+        '#type' => 'table',
+        '#header' => $header,
+        '#rows' => $table_rows,
+        '#empty' => $this->t('No se encontraron programas.'),
+      ];
+    } catch (\Exception $e) {
+      // Registrar el error y mostrar un mensaje amigable.
+      \Drupal::logger('programas_modulo')->error('Error en programasPage: 
+' . $e->getMessage());
+      return [
+        '#markup' => $this->t('Ocurrió un error al cargar los programas. 
+Inténtalo de nuevo más tarde.'),
+      ];
+    }
+  }
+}
+

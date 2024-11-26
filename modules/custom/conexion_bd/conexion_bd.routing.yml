@@ -1,0 +1,8 @@
+conexion_bd.verificar:
+  path: '/verificar-conexion'
+  defaults:
+    _controller: '\Drupal\conexion_bd\Controller\ConexionController::verificarConexion'
+    _title: 'Verificar Conexión'
+  requirements:
+    _permission: 'access content'
+

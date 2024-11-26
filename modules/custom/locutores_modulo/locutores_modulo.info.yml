@@ -1,0 +1,6 @@
+name: 'Locutores Modulo'
+type: module
+description: 'Módulo para mostrar la lista de locutores.'
+core_version_requirement: ^10
+package: Custom
+

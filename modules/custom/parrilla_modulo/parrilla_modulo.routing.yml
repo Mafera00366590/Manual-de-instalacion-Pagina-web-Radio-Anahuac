@@ -1,0 +1,8 @@
+parrilla_modulo.parrilla:
+  path: '/parrilla'
+  defaults:
+    _controller: '\Drupal\parrilla_modulo\Controller\ParrillaController::mostrarParrilla'
+    _title: 'Parrilla de Programación'
+  requirements:
+    _permission: 'access content'
+

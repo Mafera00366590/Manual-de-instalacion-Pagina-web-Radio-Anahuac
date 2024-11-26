@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * Implementa hook_help().
+ */
+function ivoox_test_help($route_name) {
+  switch ($route_name) {
+    case 'help.page.ivoox_test':
+      drupal_set_message(t('Este es el módulo de prueba de Ivoox.'));
+      break;
+  }
+}
+

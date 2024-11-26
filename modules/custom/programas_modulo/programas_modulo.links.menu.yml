@@ -1,0 +1,7 @@
+programas_modulo.programas_menu:
+  title: 'Programas'
+  description: 'Ver los programas de la estación de radio.'
+  parent: system.main
+  route_name: programas_modulo.programas_page
+  weight: 0
+

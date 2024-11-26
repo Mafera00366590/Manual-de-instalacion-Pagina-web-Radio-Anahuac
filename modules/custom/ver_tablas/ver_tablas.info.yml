@@ -1,0 +1,7 @@
+name: 'Ver Tablas'
+type: module
+description: 'Un módulo para mostrar los datos de las tablas.'
+core_version_requirement: ^10 || ^9
+package: 'Custom'
+dependencies: []
+

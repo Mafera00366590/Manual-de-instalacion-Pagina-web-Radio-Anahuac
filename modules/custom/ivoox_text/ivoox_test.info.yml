@@ -1,0 +1,9 @@
+name: 'Ivoox Test'
+type: module
+description: 'Módulo para mostrar un iframe de Ivoox en una página de 
+prueba.'
+core_version_requirement: ^10
+package: Custom
+dependencies:
+  - drupal:views
+

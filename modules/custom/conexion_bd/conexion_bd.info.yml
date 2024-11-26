@@ -1,0 +1,7 @@
+name: 'Verificar Conexión BD'
+type: module
+description: 'Un módulo para verificar la conexión a la base de datos.'
+core_version_requirement: ^10 || ^9
+package: 'Custom'
+dependencies: []
+

@@ -1,0 +1,8 @@
+ver_tablas.mostrar_datos:
+  path: '/ver-tabla-horario'
+  defaults:
+    _controller: '\Drupal\ver_tablas\Controller\VerTablasController::mostrarDatos'
+    _title: 'Mostrar Datos de la Tabla Horario'
+  requirements:
+    _permission: 'access content'
+

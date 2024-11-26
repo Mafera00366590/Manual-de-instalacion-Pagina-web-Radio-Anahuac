@@ -1,0 +1,16 @@
+locutores_modulo.locutores_page:
+  path: '/locutores'
+  defaults:
+    _controller: '\Drupal\locutores_modulo\Controller\LocutoresController::locutoresPage'
+    _title: 'Locutores'
+  requirements:
+    _access: 'TRUE'
+
+locutores_modulo.info_locutor:
+  path: '/locutores/{id_locutor}'
+  defaults:
+    _controller: '\Drupal\locutores_modulo\Controller\LocutoresController::infoLocutorPage'
+    _title: 'Información del Locutor'
+  requirements:
+    _access: 'TRUE'
+

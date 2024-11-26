@@ -1,0 +1,17 @@
+programas_modulo.programas_page:
+  path: '/programas'
+  defaults:
+    _controller: '\Drupal\programas_modulo\Controller\ProgramasController::programasPage'
+    _title: 'Programas'
+  requirements:
+    _permission: 'access content'
+
+programas_modulo.detalle_programa_page:
+  path: '/programa/{id_programa}'
+  defaults:
+    _controller: '\Drupal\programas_modulo\Controller\ProgramasController::detalleProgramaPage'
+    _title: 'Detalles del Programa'
+  requirements:
+    _permission: 'access content'
+    id_programa: \d+
+

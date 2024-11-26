@@ -1,0 +1,8 @@
+ivoox_test.ivoox_test_page:
+  path: '/ivoox-test'
+  defaults:
+    _controller: 'Drupal\ivoox_test\Controller\IvooxTestController::ivooxTestPage'
+    _title: 'Página de prueba de Ivoox'
+  requirements:
+    _permission: 'access content'
+

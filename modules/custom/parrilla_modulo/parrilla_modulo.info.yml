@@ -1,0 +1,7 @@
+name: 'Parrilla Modulo'
+type: module
+description: 'Módulo para mostrar la parrilla de programación de la 
+radio.'
+core_version_requirement: ^10
+package: Custom
+

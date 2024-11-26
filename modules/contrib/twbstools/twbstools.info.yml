@@ -1,0 +1,4 @@
+name: Bootstrap tools
+type: module
+description: 'Companion module for [Bootstrap 5 theme] to provide better content editor and developer experience.'
+core_version_requirement: ^9 | ^10

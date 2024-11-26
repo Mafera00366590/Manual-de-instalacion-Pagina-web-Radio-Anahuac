@@ -1,0 +1,40 @@
+<?php
+
+namespace Drupal\ivoox_test\Controller;
+
+use Drupal\Core\Controller\ControllerBase;
+
+/**
+ * Clase IvooxTestController.
+ *
+ * Esta clase maneja la lógica para renderizar el contenido de la página 
+con el iframe de Ivoox.
+ */
+class IvooxTestController extends ControllerBase {
+
+  /**
+   * Construye el contenido de la página.
+   *
+   * @return array
+   *   Un arreglo renderizable con el contenido que se mostrará en la página.
+   */
+  public function ivooxTestPage() {
+    // Código HTML del iframe con el reproductor de Ivoox.
+    $iframe_code = '<iframe src="https://www.ivoox.com/player_es_podcast_2390082_zp_1.html" 
+                        width="100%" 
+                        style="border: 1px solid #FFFFFF;" 
+                        height="400" 
+                        frameborder="0" 
+                        allowfullscreen="0" 
+                        scrolling="no" 
+                        loading="lazy">
+                    </iframe>';
+    
+    // Se devuelve el iframe como contenido de la página.
+    return [
+      '#markup' => $iframe_code,  // Devuelve el iframe como un contenido 
+renderizable.
+    ];
+  }
+}
+
