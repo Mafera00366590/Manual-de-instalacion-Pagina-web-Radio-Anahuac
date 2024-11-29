@@ -19,7 +19,29 @@ $message = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_programa = intval($_POST["id_programa"]);
     $nombre_programa = $_POST["nombre_programa"];
+    $descripcion = $_POST["descripcion"];
+    $enlaces = $_POST["enlaces"];
+    $id_horario = intval($_POST["id_horario"]);
     
+    // Verificar si se ha subido una imagen
+    if (isset($_FILES["imagen"]) && $_FILES["imagen"]["error"] === 0) {
+        // Obtener la información del archivo subido
+        $nombre_imagen = $_FILES["imagen"]["name"];
+        $tmp_nombre = $_FILES["imagen"]["tmp_name"];
+        $ruta_destino = "../fotos_programas/" . $nombre_imagen;
+
+        // Mover la imagen a la carpeta especificada
+        if (move_uploaded_file($tmp_nombre, $ruta_destino)) {
+            $imagen = $ruta_destino;
+        } else {
+            $imagen = "";
+            $message = "Error al subir la imagen.";
+        }
+    } else {
+        // Si no se subió una imagen, no se actualiza el campo de imagen
+        $imagen = "";
+    }
+
     // Verificar si el ID del programa existe en la base de datos
     $sql = "SELECT * FROM programas WHERE id_programa = ?";
     $stmt = $conn->prepare($sql);
@@ -29,9 +51,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result->num_rows > 0) {
         // Actualizar los datos del programa
-        $sql = "UPDATE programas SET nombre = ? WHERE id_programa = ?";
+        $sql = "UPDATE programas 
+                SET nombre = ?, descripcion = ?, enlaces = ?, imagen = ?, id_horario = ? 
+                WHERE id_programa = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("si", $nombre_programa, $id_programa);
+        $stmt->bind_param("ssssii", $nombre_programa, $descripcion, $enlaces, $imagen, $id_horario, $id_programa);
         
         if ($stmt->execute()) {
             $message = "Datos del programa actualizados correctamente.";
@@ -63,16 +87,17 @@ $conn->close();
         form { display: inline-block; text-align: left; margin-top: 20px; }
         div { margin-bottom: 10px; }
         label { display: block; margin-bottom: 5px; }
-        input { width: 100%; padding: 8px; margin-bottom: 5px; border: 1px solid #ccc; border-radius: 4px; }
+        input, textarea { width: 100%; padding: 8px; margin-bottom: 5px; border: 1px solid #ccc; border-radius: 4px; }
         button { padding: 10px 15px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; }
         button:hover { background-color: #45a049; }
+        input[type="file"] { padding: 5px; }
     </style>
 </head>
 <body>
     <h1>Modificar Datos del Programa</h1>
 
     <!-- Formulario de modificación de datos -->
-    <form method="POST" action="">
+    <form method="POST" action="" enctype="multipart/form-data">
         <!-- Datos del Programa -->
         <div>
             <label for="id_programa">ID Programa:</label>
@@ -81,6 +106,22 @@ $conn->close();
         <div>
             <label for="nombre_programa">Nuevo nombre del programa:</label>
             <input type="text" name="nombre_programa" required>
+        </div>
+        <div>
+            <label for="descripcion">Descripción del programa:</label>
+            <textarea name="descripcion" rows="4" required></textarea>
+        </div>
+        <div>
+            <label for="enlaces">Enlaces relacionados:</label>
+            <input type="text" name="enlaces" placeholder="Ej: https://www.example.com">
+        </div>
+        <div>
+            <label for="imagen">Subir imagen del programa:</label>
+            <input type="file" name="imagen" accept="image/*">
+        </div>
+        <div>
+            <label for="id_horario">ID del Horario:</label>
+            <input type="number" name="id_horario" required>
         </div>
 
         <div>
