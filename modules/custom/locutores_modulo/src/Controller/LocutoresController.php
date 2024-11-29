@@ -26,7 +26,7 @@ class LocutoresController extends ControllerBase {
     $content = '<h2>Locutores</h2>';
     $content .= '<table border="1" cellpadding="10" cellspacing="0" 
 style="width: 100%;">';
-    $content .= '<thead><tr><th>Nombre del Locutor</th><th>Programa</th><th>Más información</th></tr></thead>';
+    $content .= '<thead><tr><th>Nombre del Locutor</th><th>Programa</th></tr></thead>';
     $content .= '<tbody>';
 
     // Iteramos sobre los locutores obtenidos de la base de datos
@@ -37,8 +37,8 @@ style="width: 100%;">';
       $content .= '<td><strong>' . $locutor->nombre_locutor . 
 '</strong></td>';
       $content .= '<td>' . $locutor->nombre_programa . '</td>';
-      $content .= '<td><a href="' . $url . '" class="locutores-btn">Más información</a></td>';
-      $content .= '</tr>';
+      //$content .= '<td><a href="' . $url . '" class="locutores-btn">Más información</a></td>';
+      //$content .= '</tr>';
     }
 
     $content .= '</tbody>';
