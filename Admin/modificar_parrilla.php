@@ -19,6 +19,7 @@ $message = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_parrilla = intval($_POST["id_parrilla"]);
     $id_hora = $_POST["id_hora"];
+    $id_programa = $_POST["id_programa"];
     
     // Verificar si el ID de la parrilla existe en la base de datos
     $sql = "SELECT * FROM parrilla WHERE id_parrilla = ?";
@@ -29,9 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result->num_rows > 0) {
         // Actualizar los datos de la parrilla
-        $sql = "UPDATE parrilla SET id_hora = ? WHERE id_parrilla = ?";
+        $sql = "UPDATE parrilla SET id_hora = ?, id_programa = ? WHERE id_parrilla = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ii", $id_hora, $id_parrilla);
+        $stmt->bind_param("iii", $id_hora, $id_programa, $id_parrilla);
         
         if ($stmt->execute()) {
             $message = "Datos de la parrilla actualizados correctamente.";
@@ -81,6 +82,10 @@ $conn->close();
         <div>
             <label for="id_hora">Nuevo horario:</label>
             <input type="number" name="id_hora" required>
+        </div>
+        <div>
+            <label for="id_programa">Nuevo ID del programa:</label>
+            <input type="number" name="id_programa" required>
         </div>
 
         <div>
