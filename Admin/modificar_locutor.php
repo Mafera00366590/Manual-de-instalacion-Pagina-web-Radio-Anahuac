@@ -19,6 +19,8 @@ $message = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_locutor = intval($_POST["id_locutor"]);
     $nombre_locutor = $_POST["nombre_locutor"];
+    $id_programa = intval($_POST["id_programa"]);
+    $nombre_programa = $_POST["nombre_programa"];
     
     // Verificar si el ID del locutor existe en la base de datos
     $sql = "SELECT * FROM locutores WHERE id_locutor = ?";
@@ -28,15 +30,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        // Actualizar los datos del locutor
-        $sql = "UPDATE locutores SET nombre_locutor = ? WHERE id_locutor = ?";
+        // Actualizar los datos del locutor y programa
+        $sql = "UPDATE locutores 
+                SET nombre_locutor = ?, id_programa = ?, nombre_programa = ? 
+                WHERE id_locutor = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("si", $nombre_locutor, $id_locutor);
+        $stmt->bind_param("sisi", $nombre_locutor, $id_programa, $nombre_programa, $id_locutor);
         
         if ($stmt->execute()) {
-            $message = "Datos del locutor actualizados correctamente.";
+            $message = "Datos del locutor y programa actualizados correctamente.";
         } else {
-            $message = "Error al actualizar los datos del locutor.";
+            $message = "Error al actualizar los datos del locutor y programa.";
         }
     } else {
         $message = "El locutor con el ID proporcionado no existe.";
@@ -83,7 +87,14 @@ $conn->close();
             <label for="nombre_locutor">Nuevo nombre del locutor:</label>
             <input type="text" name="nombre_locutor" required>
         </div>
-
+        <div>
+            <label for="id_programa">ID Programa:</label>
+            <input type="number" name="id_programa" required>
+        </div>
+        <div>
+            <label for="nombre_programa">Nuevo nombre del programa:</label>
+            <input type="text" name="nombre_programa" required>
+        </div>
         <div>
             <button type="submit">Modificar</button>
         </div>
